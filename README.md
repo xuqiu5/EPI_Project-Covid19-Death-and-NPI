@@ -17,8 +17,8 @@ information on name,fips code of all US counties and its neighboring counties, r
     
 ## User Manual
 ## (1) Data Preprocessing
-#### process_policy_border_county.ipynb
-This file select for border counties that have experienced difference in policy at some time point with their neighboring counties in another state.
+#### (1.1)Option 1: process_policy_border_county.ipynb
+This file select for state border counties that have experienced difference in policy at some time point with their neighboring counties in another state.
 
 Cases were chosen where for both states all border counties are under the same covid policy(for example: state1: all border counties have masking mandates; state2: all border counties does not have masking mandate). 
 
@@ -37,6 +37,17 @@ Files will be used as input for 'NPI_death.ipynb':
 (2) 'sah_applied_or_not.csv': counties to test based on whether they adopted any SAH orders
 
 (3) 'sah_mandatory_or_not.csv': counties to test based on whether they adopted any mandatory SAH orders 
+
+#### (1.2)Option2: counties_KNN.ipynb
+This script uses KNN clustering to classify counties as "similar". The chosen county and its closest neighbors can then be divided into high or low mask usage groups. KNN is based on factors such as population, median income, Gini index, population stability, and education level (percentage of people with undergraduate and graduate degrees). Clustering these counties aims to minimize confounding variables that could impact COVID mortality by taking into account factors that might be related to COVID outcomes.
+
+Input file:
+
+(1) KNN_in_v1.csv: contans information on all US counties such as income and education level. 
+
+Output file:
+
+(1) border_county_out.xlsx: contains county info and their closest neighbors clustered by KNN
 
 ## (2) Statistical Testing
 The pipeline is called 'NPI_death.ipynb'. To run the pipeline, either open it on google colab or in local jupyter notebook. Upload the corresponding files and the pipeline is ready to run.
